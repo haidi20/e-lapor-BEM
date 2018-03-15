@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # lapor
 
 > tentang laporan
@@ -19,3 +20,6 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+=======
+# e-lapor-BEM
+>>>>>>> 6af1c3f85ef943455e58d70fc6eb288e4fb0b92a
