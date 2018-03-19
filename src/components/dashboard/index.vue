@@ -18,9 +18,10 @@
 <script>
 import Header from '../header.vue';
 export default {
+  name: 'indexDashboard',
   components : {
     Header
-  }
+  },
 }
 </script>
 

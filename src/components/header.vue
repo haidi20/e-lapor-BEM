@@ -12,7 +12,7 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li> <a href="#">Logout</a> </li>
+          <li> <a href="#" v-on:click="logout">Logout</a> </li>
         </ul>
       </div>
     </div>
@@ -20,8 +20,16 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
-  name: 'header',
+  // name: 'header',
+  methods: {
+    logout: function() {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('login')
+      })
+    }
+  }
 }
 </script>
 
