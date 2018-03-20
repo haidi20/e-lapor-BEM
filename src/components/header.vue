@@ -23,6 +23,9 @@
 import firebase from 'firebase'
 export default {
   // name: 'header',
+  mounted(){
+    console.log(firebase.auth().currentUser.uid)
+  },
   methods: {
     logout: function() {
       firebase.auth().signOut().then(() => {

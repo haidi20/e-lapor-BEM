@@ -31,12 +31,21 @@
           name="kirim"
           v-on:click="kirim"
           style="font-size:20px"
+          data-toggle="modal" data-target="#pesan"
         >
             Registerasi Aplikasi Lapor
         </button>
       </div>
     </div>
-    <div class="modal">
+    <div class="row" style="margin-top:10px">
+      <div class="col-xs-12 text-right">
+        Sudah punya akun ?
+        <router-link v-bind:to="'login'">
+          <a href="#" class="btn btn-md btn-info">Login</a>
+        </router-link>
+      </div>
+    </div>
+    <div class="modal" id="pesan" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -44,11 +53,14 @@
             <h4 class="modal-title">Modal title</h4>
           </div>
           <div class="modal-body">
-            <p>One fine body…</p>
+            <!-- <p v-if="notif.length">{{notif}}</p>
+            <p v-else>selamat, email {{email}} telah berhasil di buat.</p> -->
+            {{notif}}
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <!-- <router-link v-bind:to="'login'"> -->
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Oke</button>
+            <!-- </router-link> -->
           </div>
         </div>
       </div>
@@ -67,6 +79,7 @@ export default {
       password: '',
       re_password: '',
       note: '',
+      notif: ''
     }
   },
   methods: {
@@ -77,18 +90,27 @@ export default {
       if (this.note == true) {
         firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
           (user) => {
-             // this.$router.go('/login')
-             console.log('Login Berhasil')
+             this.notif = "selamat, Email "+this.email+" telah berhasil dibuat"
            },
            (err) => {
-             alert('Oops. ' + err.message)
+             // this.notif = err
+             if (err.code == 'auth/invalid-email') {
+               this.notif = "form email kosong atau tidak valid"
+             }
+             if (err.code == 'auth/weak-password') {
+               this.notif = "form password harus 6 karakter atau lebih"
+             }
+             if (err.code == 'auth/email-already-in-use') {
+               this.notif = "Email sudah ada"
+             }
            }
         )
       }
     },
     rePassword(){
       if (this.password != this.re_password) {
-        alert('maaf, passwordnya tidak sama');
+        // alert('maaf, passwordnya tidak sama');
+        this.notif = "Maaf, password anda tidak sama...!"
         this.note = false ;
       }else{
         this.note = true ;

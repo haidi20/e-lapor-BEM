@@ -6,8 +6,6 @@
         <div class="col-md-6">
           <div class="tulisan">
             selamat datang di Aplikasi Lapor
-            <router-link v-bind:to="'Login'">Login</router-link>
-            <!-- <a href="Login" class="btn btn-success btn-large">Login</a> -->
           </div>
         </div>
       </div>
