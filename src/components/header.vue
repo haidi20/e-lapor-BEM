@@ -12,7 +12,6 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li> <a href="#" v-on:click="logout">Logout</a></li>
           <li>
             <router-link v-bind:to="'pengaturan'">
               <a href="#" style="color:white">
@@ -20,6 +19,7 @@
               </a>
             </router-link>
           </li>
+          <li> <a href="#" v-on:click="logout">Logout</a></li>
         </ul>
       </div>
     </div>
