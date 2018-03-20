@@ -77,6 +77,7 @@
               >
                   Oke
               </button>
+
             <!-- </router-link> -->
           </div>
         </div>
@@ -104,7 +105,7 @@ export default {
     kirim: function(){
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
         (user) => {
-            this.$router.replace('indexDashboard')
+            this.$router.replace('Dashboard')
          },
          (err) => {
            // this.notif = err
