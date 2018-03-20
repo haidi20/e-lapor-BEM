@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1">
         <div class="form-group">
-          <input type="text" v-model="email" class="form-control text-center"  name="email" placeholder="Insert Your Email">
+          <input type="text" v-model="email" class="form-control text-center"  name="email" placeholder="Email">
           <br>
           <input type="password" v-model="password" class="form-control text-center"  name="password" placeholder="Password">
           <br>
