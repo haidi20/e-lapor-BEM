@@ -69,7 +69,14 @@
           </div>
           <div class="modal-footer">
             <!-- <router-link v-bind:to="'login'"> -->
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Oke</button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-dismiss="modal"
+                v-on:click="modal"
+              >
+                  Oke
+              </button>
             <!-- </router-link> -->
           </div>
         </div>
@@ -91,10 +98,12 @@ export default {
     }
   },
   methods: {
+    modal: function(){
+      this.notif = ''
+    },
     kirim: function(){
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
         (user) => {
-            this.notif = ''
             this.$router.replace('indexDashboard')
          },
          (err) => {
@@ -108,6 +117,9 @@ export default {
            }
            if (err.code == 'auth/wrong-password') {
              this.notif = 'maaf, Password Anda salah. silahkan di coba kembali'
+           }
+           if (err.code == '') {
+             this.notif = ""
            }
          }
       )
