@@ -6,7 +6,7 @@
         <div class="col-xs-12">
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">Kirim Gambar</h3>
+              <h3 class="panel-title label-ukuran" >Kirim Gambar</h3>
             </div>
             <div class="panel-body text-left">
               <input
@@ -29,9 +29,14 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
-           <label for="textArea" class="col-xs-12 text-left">Isi Laporan</label>
+           <label for="textArea" class="col-xs-12 text-left label-ukuran" >Isi Laporan :</label>
              <textarea class="form-control" rows="8" id="textArea"></textarea>
          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 ">
+          <a href="#" class="btn btn-md btn-block btn-success" @click="kirim" style="font-size:20px">Kirim</a>
         </div>
       </div>
     </div>
@@ -40,6 +45,7 @@
 
 <script>
 import Header from '../header.vue';
+import firebase from 'firebase';
 
 export default {
   name: 'Dashboard',
@@ -52,8 +58,17 @@ export default {
     }
   },
   methods: {
+    kirim: function(){
+      firebase.storage.ref('/gambar').put(this.gambar).then(
+        function(data){
+          console.log(data);
+        }
+      )
+    },
     dapatGambar: function(e){
       let gbr = e.target.files[0];
+
+      // file di masukkan fungsi membaca file
       this.baca(gbr);
     },
     baca: function(gbr){
@@ -68,5 +83,10 @@ export default {
 </script>
 
 <style>
-
+  .label-ukuran{
+    font-size: 22px ;
+  }
+  .judul{
+    color: black;
+  }
 </style>
