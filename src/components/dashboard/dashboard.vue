@@ -55,14 +55,17 @@ export default {
   },
   data(){
     return{
-      gambar: ''
+      gambar: {
+        file: '',
+        name: ''
+      }
     }
   },
   methods: {
     kirim: function(){
-      // let storageUrl = 'gambar/';
-      // let storageRef = firebase.storage().ref(storageUrl + gbr.name);
-      // let uploadTask = storageRef.putString(e.target.result, 'data_url',{contentType:`image/jpg`})
+      let storageUrl = 'gambar/';
+      let storageRef = firebase.storage().ref(storageUrl + this.gambar.name);
+      let uploadTask = storageRef.putString(this.gambar.file, 'data_url',{contentType:`image/jpg`})
     },
     dapatGambar: function(e){
       let gbr = e.target.files[0];
@@ -73,8 +76,9 @@ export default {
     baca: function(gbr){
       let reader = new FileReader();
       reader.readAsDataURL(gbr);
+      this.gambar.name = gbr.name ;
       reader.onload = e => {
-        this.gambar = e.target.result ;
+        this.gambar.file = e.target.result ;
       }
       reader.onerror = e => {
         console.log('failed file road: '+e) ;
