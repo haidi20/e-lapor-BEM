@@ -16,6 +16,7 @@
                 name="gambar"
                 v-on:change="dapatGambar"
                 accept="gambar/*"
+                v-model="tempat_gambar"
               >
               <br>
               <img
@@ -37,12 +38,42 @@
       </div>
       <div class="row">
         <div class="col-xs-12 ">
-          <a href="#" class="btn btn-md btn-block btn-success" @click="kirim" style="font-size:20px">Kirim</a>
+          <a href="#"
+            class="btn btn-md btn-block btn-success"
+            @click="kirim" style="font-size:20px"
+            data-target="#pesan"
+            data-toggle="modal"
+          >Kirim</a>
         </div>
       </div>
     </div>
-    <h1>DASHBOARD</h1>
-    <h1>ksjdflksjf</h1>
+    <div class="modal" id="pesan" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Pemberitahuan</h4>
+          </div>
+          <div class="modal-body">
+            <!-- <p v-if="notif.length">{{notif}}</p>
+            <p v-else>selamat, email {{email}} telah berhasil di buat.</p> -->
+            Laporan Telah Terkirim
+          </div>
+          <div class="modal-footer">
+            <!-- <router-link v-bind:to="'login'"> -->
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-dismiss="modal"
+              >
+                  Oke
+              </button>
+
+            <!-- </router-link> -->
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -57,17 +88,32 @@ export default {
   },
   data(){
     return{
-      gambar: {
-        file: '',
-        name: ''
-      }
+      gambar: '',
+      laporan: '',
+      tempat_gambar: ''
     }
+  },
+  mounted(){
+    // console.log(firebase.auth().R) ;
   },
   methods: {
     kirim: function(){
+      let nama_gambar = this.acak();
+      let email_id = firebase.auth().R ;
       let storageUrl = 'gambar/';
-      let storageRef = firebase.storage().ref(storageUrl + this.gambar.name);
-      let uploadTask = storageRef.putString(this.gambar.file, 'data_url',{contentType:`image/jpg`})
+      let storageUrlData = 'post';
+
+      let storageRef = firebase.storage().ref(storageUrl + nama_gambar);
+      let databaseRef = firebase.database().ref(storageUrlData);
+
+      let uploadData = databaseRef.push().set({
+        nama_gambar: nama_gambar,
+        pesan: 'masuk postingan'
+      }) ;
+      let uploadTask = storageRef.putString(this.gambar, 'data_url',{contentType:`image/jpg`})
+
+      this.gambar = ''
+      this.tempat_gambar = ''
     },
     dapatGambar: function(e){
       let gbr = e.target.files[0];
@@ -78,13 +124,22 @@ export default {
     baca: function(gbr){
       let reader = new FileReader();
       reader.readAsDataURL(gbr);
-      this.gambar.name = gbr.name ;
       reader.onload = e => {
-        this.gambar.file = e.target.result ;
+        this.gambar = e.target.result ;
       }
       reader.onerror = e => {
         console.log('failed file road: '+e) ;
       }
+    },
+    acak: function(){
+      let campur = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+      let panjang = 9;
+      let random_all = '';
+      for (let i=0; i<panjang; i++) {
+          let hasil = Math.floor(Math.random() * campur.length);
+          random_all += campur.substring(hasil,hasil+1);
+      }
+      return random_all ;
     }
   }
 }

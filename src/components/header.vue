@@ -31,7 +31,7 @@ import firebase from 'firebase'
 export default {
   // name: 'header',
   mounted(){
-    console.log(firebase.auth().currentUser.email)
+    // console.log(firebase.auth().currentUser.email)
   },
   methods: {
     logout: function() {

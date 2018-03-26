@@ -33,7 +33,7 @@
           data-toggle="modal"
           data-target="#pesan"
         >
-            Login Untuk Melapor A
+            Login Untuk Melapor
         </button>
         <button
           v-else
@@ -43,7 +43,7 @@
           v-on:click="kirim"
           style="font-size:20px"
         >
-            Login Untuk Melapor B
+            Login Untuk Melapor
         </button>
       </div>
     </div>
@@ -97,6 +97,9 @@ export default {
       password: '',
       notif: ''
     }
+  },
+  mounted(){
+    this.kirim()
   },
   methods: {
     modal: function(){
