@@ -60,11 +60,9 @@ export default {
   },
   methods: {
     kirim: function(){
-      // firebase.storage().ref('gambar/').put(this.gambar).then(
-      //   function(data){
-      //     console.log(data);
-      //   }
-      // )
+      // let storageUrl = 'gambar/';
+      // let storageRef = firebase.storage().ref(storageUrl + gbr.name);
+      // let uploadTask = storageRef.putString(e.target.result, 'data_url',{contentType:`image/jpg`})
     },
     dapatGambar: function(e){
       let gbr = e.target.files[0];
@@ -76,9 +74,6 @@ export default {
       let reader = new FileReader();
       reader.readAsDataURL(gbr);
       reader.onload = e => {
-        let storageUrl = 'gambar/';
-        let storageRef = firebase.storage().ref(storageUrl + gbr.name);
-        let uploadTask = storageRef.putString(e.target.result, 'data_url',{contentType:`image/jpg`})
         this.gambar = e.target.result ;
       }
       reader.onerror = e => {

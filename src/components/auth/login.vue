@@ -24,7 +24,7 @@
     <div class="row">
       <div class="col-xs-12">
         <button
-          v-if="notif.length"
+          
           type="button"
           class="btn btn-success btn-large btn-block"
           name="kirim"
@@ -33,9 +33,9 @@
           data-toggle="modal"
           data-target="#pesan"
         >
-            Login Untuk Melapor
+            Login Untuk Melapor A
         </button>
-        <button
+        <!-- <button
           v-else
           type="button"
           class="btn btn-success btn-large btn-block"
@@ -43,8 +43,8 @@
           v-on:click="kirim"
           style="font-size:20px"
         >
-            Login Untuk Melapor
-        </button>
+            Login Untuk Melapor B
+        </button> -->
       </div>
     </div>
     <div class="row">
