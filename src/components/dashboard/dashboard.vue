@@ -41,6 +41,7 @@
         </div>
       </div>
     </div>
+    <h1>DASHBOARD</h1>
   </div>
 </template>
 
