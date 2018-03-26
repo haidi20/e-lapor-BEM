@@ -24,7 +24,7 @@
     <div class="row">
       <div class="col-xs-12">
         <button
-          
+          v-if="notif.length"
           type="button"
           class="btn btn-success btn-large btn-block"
           name="kirim"
@@ -35,7 +35,7 @@
         >
             Login Untuk Melapor A
         </button>
-        <!-- <button
+        <button
           v-else
           type="button"
           class="btn btn-success btn-large btn-block"
@@ -44,7 +44,7 @@
           style="font-size:20px"
         >
             Login Untuk Melapor B
-        </button> -->
+        </button>
       </div>
     </div>
     <div class="row">
