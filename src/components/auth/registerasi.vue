@@ -1,10 +1,8 @@
 <template lang="html">
   <div class="container">
     <div class="row">
-      <div class="col-xs-3 col-xs-offset-4 text-center" style="margin-top:30px">
-        <div class="logo">
-          logo
-        </div>
+      <div class="col-xs-3 col-xs-offset-4" align='center'  style="margin-top:30px;">
+          <img src="../../assets/bem.jpg" alt="BEM" class="logo">
       </div>
     </div>
     <div class="row">
@@ -123,14 +121,5 @@ export default {
 <style lang="css">
   .auth {
     margin-top: 90px;
-  }
-  .logo{
-    width: 50px;
-    height: 50px;
-    align:center;
-    margin-left:15px;
-    padding-top:10px;
-    background-color: white ;
-    border: 2px solid black;
   }
 </style>

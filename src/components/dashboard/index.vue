@@ -32,7 +32,7 @@
         <div class="col-xs-12">
           <div class="form-group">
            <label for="textArea" class="col-xs-12 text-left label-ukuran" >Isi Laporan :</label>
-             <textarea class="form-control" rows="8" id="textArea"></textarea>
+             <textarea class="form-control" rows="8" id="textArea" v-model="lapor"></textarea>
          </div>
         </div>
       </div>
@@ -99,7 +99,9 @@ export default {
   methods: {
     kirim: function(){
       let nama_gambar = this.acak();
-      let email_id = firebase.auth().R ;
+      let user_id = firebase.auth().R ;
+      let lapor = this.lapor ;
+      
       let storageUrl = 'gambar/';
       let storageUrlData = 'post';
 
@@ -107,13 +109,15 @@ export default {
       let databaseRef = firebase.database().ref(storageUrlData);
 
       let uploadData = databaseRef.push().set({
-        nama_gambar: nama_gambar,
-        pesan: 'masuk postingan'
+        user_id: user_id,
+        gambar: nama_gambar,
+        lapor: lapor
       }) ;
-      let uploadTask = storageRef.putString(this.gambar, 'data_url',{contentType:`image/jpg`})
+      let uploadTask = storageRef.putString(this.gambar, 'data_url',{contentType:`image/jpg`}) ;
 
-      this.gambar = ''
-      this.tempat_gambar = ''
+      this.lapor = '' ;
+      this.gambar = '' ;
+      this.tempat_gambar = '' ;
     },
     dapatGambar: function(e){
       let gbr = e.target.files[0];

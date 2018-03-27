@@ -4,9 +4,10 @@ import firebase from 'firebase';
 
 import Login from '@/components/auth/login.vue'
 import HelloWorld from '@/components/HelloWorld'
+import History from '@/components/history/index.vue'
+import Dashboard from '@/components/dashboard/index.vue'
 import Registerasi from '@/components/auth/registerasi.vue'
-import Dashboard from '@/components/dashboard/dashboard.vue'
-import Pengaturan from '@/components/pengaturan/pengaturan.vue'
+import Pengaturan from '@/components/pengaturan/index.vue'
 
 Vue.use(Router)
 
@@ -42,6 +43,14 @@ let router = new Router({
       path: '/pengaturan',
       name: 'Pengaturan',
       component: Pengaturan,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/history',
+      name: 'History',
+      component: History,
       meta: {
         requiresAuth: true
       }

@@ -13,9 +13,23 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li>
+            <router-link v-bind:to="'dashboard'">
+              <a href="#" style="color:white">Home</a>
+            </router-link>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li>
             <router-link v-bind:to="'pengaturan'">
               <a href="#" style="color:white">
                   Pengaturan
+              </a>
+            </router-link>
+          </li>
+          <li>
+            <router-link v-bind:to="'history'">
+              <a href="#" style="color:white">
+                History Lapor
               </a>
             </router-link>
           </li>
