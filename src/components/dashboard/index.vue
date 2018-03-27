@@ -114,7 +114,7 @@ export default {
       let uploadTask = storageRef.putString(this.gambar, 'data_url',{contentType:`image/jpg`}) ;
       uploadTask.then(
         (user) => {
-          console.log(user.metadata.downloadURLs[0])
+          // console.log(user.metadata.downloadURLs[0])
           let uploadData = databaseRef.push({
             user_id: user_id,
             gambar: user.metadata.downloadURLs[0],

@@ -17,11 +17,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="post in posts">
+                  <tr v-for="post in posts" v-if="post.user_id === user_id">
                     <td>
                       <img
                         v-bind:src="post.gambar"
-                        alt="gambar"
                         height="40px"
                         width="40px"
                       />
@@ -49,6 +48,7 @@ export default {
   data(){
     return{
       posts: '',
+      user_id: ''
     }
   },
   mounted(){
@@ -56,12 +56,11 @@ export default {
   },
   methods: {
     fetchPost: function(){
-      let user_id = firebase.auth().currentUser.uid ;
-
-      let posts = firebase.database().ref('post').once('value');
-      posts.then(
+      this.user_id = firebase.auth().currentUser.uid ;
+      let dataRef = firebase.database().ref('post').once('value');
+      dataRef.then(
         (data) => {
-          this.posts = data.val()
+            this.posts = data.val()
         }
       )
     },
