@@ -110,12 +110,21 @@ export default {
       let storageRef = firebase.storage().ref(storageUrl + nama_gambar);
       let databaseRef = firebase.database().ref(storageUrlData);
 
-      let uploadData = databaseRef.push({
-        user_id: user_id,
-        gambar: nama_gambar,
-        lapor: lapor
-      }) ;
+
       let uploadTask = storageRef.putString(this.gambar, 'data_url',{contentType:`image/jpg`}) ;
+      uploadTask.then(
+        (user) => {
+          console.log(user.metadata.downloadURLs[0])
+          let uploadData = databaseRef.push({
+            user_id: user_id,
+            gambar: user.metadata.downloadURLs[0],
+            lapor: lapor
+          }) ;
+        },
+        (err) => {
+          console.log(err)
+        }
+      );
 
       this.lapor = '' ;
       this.gambar = '' ;

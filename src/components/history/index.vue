@@ -18,7 +18,14 @@
                 </thead>
                 <tbody>
                   <tr v-for="post in posts">
-                    <td>{{post.gambar}}</td>
+                    <td>
+                      <img
+                        v-bind:src="post.gambar"
+                        alt="gambar"
+                        height="40px"
+                        width="40px"
+                      />
+                    </td>
                     <td>{{post.lapor}}</td>
                   </tr>
                 </tbody>
@@ -41,7 +48,7 @@ export default {
   },
   data(){
     return{
-      posts: ''
+      posts: '',
     }
   },
   mounted(){
@@ -57,7 +64,7 @@ export default {
           this.posts = data.val()
         }
       )
-    }
+    },
   }
 }
 </script>
