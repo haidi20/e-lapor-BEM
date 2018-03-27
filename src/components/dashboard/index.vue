@@ -43,7 +43,9 @@
             @click="kirim" style="font-size:20px"
             data-target="#pesan"
             data-toggle="modal"
-          >Kirim</a>
+          >
+            Kirim
+          </a>
         </div>
       </div>
     </div>
@@ -94,21 +96,21 @@ export default {
     }
   },
   mounted(){
-    // console.log(firebase.auth().R) ;
+    // console.log(firebase.auth().currentUser.uid) ;
   },
   methods: {
     kirim: function(){
       let nama_gambar = this.acak();
-      let user_id = firebase.auth().R ;
+      let user_id = firebase.auth().currentUser.uid ;
       let lapor = this.lapor ;
-      
+
       let storageUrl = 'gambar/';
       let storageUrlData = 'post';
 
       let storageRef = firebase.storage().ref(storageUrl + nama_gambar);
       let databaseRef = firebase.database().ref(storageUrlData);
 
-      let uploadData = databaseRef.push().set({
+      let uploadData = databaseRef.push({
         user_id: user_id,
         gambar: nama_gambar,
         lapor: lapor

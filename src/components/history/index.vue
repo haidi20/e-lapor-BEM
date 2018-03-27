@@ -12,11 +12,16 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th width="10px" >no</th>
                     <th>Foto</th>
                     <th>Penjelasan</th>
                   </tr>
                 </thead>
+                <tbody>
+                  <tr v-for="post in posts">
+                    <td>{{post.gambar}}</td>
+                    <td>{{post.lapor}}</td>
+                  </tr>
+                </tbody>
               </table>
             </div>
           </div>
@@ -40,11 +45,18 @@ export default {
     }
   },
   mounted(){
-    this.fetchPost
+    this.fetchPost();
   },
   methods: {
     fetchPost: function(){
-      this.posts = firebase.database().ref('post') ;
+      let user_id = firebase.auth().currentUser.uid ;
+
+      let posts = firebase.database().ref('post').once('value');
+      posts.then(
+        (data) => {
+          this.posts = data.val()
+        }
+      )
     }
   }
 }

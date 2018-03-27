@@ -5,6 +5,7 @@ import Vue from 'vue'
 import index from './index'
 import router from './router'
 import firebase from 'firebase'
+// import VueFire from 'vuefire'
 
 Vue.config.productionTip = false
 
