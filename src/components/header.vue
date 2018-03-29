@@ -11,7 +11,7 @@
         <a class="navbar-brand" href="#" style="font-size:30px">Lapor-BEM</a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav" v-if="user != 'admin@bem.com'">
           <li>
             <router-link v-bind:to="'dashboard'">
               <a href="#" style="color:white">Home</a>
@@ -24,13 +24,16 @@
               </a>
             </router-link>
           </li>
-          <li>
+          <!-- <li>
             <router-link v-bind:to="'pengaturan'">
               <a href="#" style="color:white">
                   Pengaturan
               </a>
             </router-link>
-          </li>
+          </li> -->
+          <li> <a href="#" v-on:click="logout">Logout</a></li>
+        </ul>
+        <ul class="nav navbar-nav" v-else>
           <li> <a href="#" v-on:click="logout">Logout</a></li>
         </ul>
       </div>
@@ -41,7 +44,11 @@
 <script>
 import firebase from 'firebase'
 export default {
-  // name: 'header',
+  data(){
+    return{
+      user: firebase.auth().currentUser.email
+    }
+  },
   mounted(){
     // console.log(firebase.auth().currentUser.email)
   },

@@ -8,6 +8,7 @@ import History from '@/components/history/index.vue'
 import Dashboard from '@/components/dashboard/index.vue'
 import Registerasi from '@/components/auth/registerasi.vue'
 import Pengaturan from '@/components/pengaturan/index.vue'
+import Admin from '@/components/admin/index.vue'
 
 Vue.use(Router)
 
@@ -51,6 +52,14 @@ let router = new Router({
       path: '/history',
       name: 'History',
       component: History,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: Admin,
       meta: {
         requiresAuth: true
       }

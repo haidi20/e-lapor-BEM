@@ -96,7 +96,10 @@ export default {
     }
   },
   mounted(){
-    // console.log(firebase.auth().currentUser.uid) ;
+    if (firebase.auth().currentUser.email == 'admin@bem.com') {
+      this.$router.replace('Admin')
+    }
+    console.log(firebase.auth().currentUser.email) ;
   },
   methods: {
     kirim: function(){
