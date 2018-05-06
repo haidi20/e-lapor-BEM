@@ -1,10 +1,21 @@
 <template lang="html">
   <div class="container">
     <div class="row">
-      <div class="col-xs-3 col-xs-offset-4" align='center'  style="margin-top:30px;">
+      <div class="col-xs-3 col-xs-offset-1" align="center" style="margin-top:30px">
+        <img src="../../assets/polnes.png" alt="polnes" class="logo-polnes">
+      </div>
+      <div class="col-xs-3 " align="center" style="margin-top:30px;">
           <img src="../../assets/bem.jpg" alt="BEM" class="logo">
       </div>
+      <div class="col-xs-3 " align="center" style="margin-top:30px;">
+          <img src="../../assets/kabinet.png" alt="BEM" class="logo">
+      </div>
     </div>
+    <!-- <div class="row">
+      <div class="col-md-12 text-center auth">
+        <h1 style="color:black">Aplikasi Lapor</h1>
+      </div>
+    </div> -->
     <div class="row">
       <div class="col-xs-12 text-center auth">
         <h1>Login</h1>
@@ -137,6 +148,12 @@ export default {
   .logo{
     width: 60px;
     height: 60px;
+    align:center;
+    margin-left:10px;
+  }
+  .logo-polnes {
+    width: 60px;
+    height: 70px;
     align:center;
     margin-left:10px;
   }
